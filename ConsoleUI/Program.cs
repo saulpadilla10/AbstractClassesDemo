@@ -46,7 +46,76 @@ namespace ConsoleUI
 
             // Call each of the drive methods for one car and one motorcycle
 
-            #endregion            
+      
+            var vehicles = new List<Vehicle>();
+
+            Vehicle motorcycle01 = new Motorcycle { Year = "2023", Make = "Indian", Model = "RoadMaster Elite", HasSideCart = true };
+            
+            Vehicle car01 = new Car { Year = "2010", Make = "Chevorlet", Model = "Camaro", Hastrunk = true };
+          
+            Car mustang = new Car();
+
+            Motorcycle harley = new Motorcycle();
+
+            vehicles.AddRange(new Vehicle[] { motorcycle01, car01, mustang, harley });
+
+            mustang.Year = "2021";
+            mustang.Make = "Ford";
+            mustang.Model = "Mustang";
+            mustang.Hastrunk = true;
+
+
+            harley.Year = "2019";
+            harley.Make = "Harley-Davidson";
+            harley.Model = "FLTRXS - Road Glide Special";
+            harley.HasSideCart = false;
+
+
+            foreach (var property in typeof(Motorcycle).GetProperties())
+            {
+                var value = property.GetValue(harley);
+                Console.WriteLine($"{property.Name}: {value}");
+
+            }
+                harley.DriveVirtual();
+
+            Console.WriteLine("-----------------------------");
+
+
+            foreach (var property in typeof(Motorcycle).GetProperties())
+            {
+                var value = property.GetValue(motorcycle01);
+                Console.WriteLine($"{property.Name}: {value}");
+
+            }
+                motorcycle01.DriveAbstract();
+
+            Console.WriteLine("-----------------------------");
+
+
+            foreach (var property in typeof(Car).GetProperties())
+            {
+                var value = property.GetValue(car01);
+                Console.WriteLine($"{property.Name}: {value}");
+
+            }
+                car01.DriveVirtual();
+
+            Console.WriteLine("-----------------------------");
+
+            foreach (var property in typeof(Car).GetProperties())
+            {
+                var value = property.GetValue(mustang);
+                Console.WriteLine($"{property.Name}: {value}");
+            }
+                mustang.DriveAbstract();
+
+            Console.WriteLine("-----------------------------");
+
+
+
+
+            #endregion
             Console.ReadLine();
         }
     }
